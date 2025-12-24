@@ -1,6 +1,7 @@
 import fs from "fs"
 import matter from "gray-matter"
 import { notFound } from "next/navigation"
+import { MDXRemote } from "next-mdx-remote/rsc"
 import { getAllPosts, getPostPathBySlug } from "@/lib/blog"
 
 export function generateStaticParams() {
@@ -11,10 +12,9 @@ export function generateStaticParams() {
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }) {
-  const { slug } = await params
-  const filePath = getPostPathBySlug(slug)
+  const filePath = getPostPathBySlug(params.slug)
 
   if (!fs.existsSync(filePath)) return notFound()
 
@@ -23,12 +23,12 @@ export default async function BlogPostPage({
 
   return (
     <main className="max-w-3xl mx-auto px-8 py-16">
-      <h1 className="text-4xl font-bold">{data.title}</h1>
-      <p className="text-sm text-gray-500 mt-3">{data.date}</p>
-      <div className="prose prose-neutral mt-10">
-        {/* Pour l’instant on affiche le markdown brut en texte */}
-        <pre className="whitespace-pre-wrap">{content}</pre>
-      </div>
+      <h1 className="text-4xl font-bold mb-2">{data.title}</h1>
+      <p className="text-sm text-gray-500 mb-10">{data.date}</p>
+
+      <article className="prose prose-neutral max-w-none">
+        <MDXRemote source={content} />
+      </article>
     </main>
   )
 }
