@@ -10,18 +10,18 @@ export default function Navbar() {
           <span className="font-semibold text-lg">Aaura</span>
         </Link>
 
-        <ul className="flex gap-6 text-sm text-gray-700">
+        <ul className="flex gap-6 text-sm text-neutral-800">
           <li>
-            <Link href="/" className="hover:text-black">Home</Link>
+            <Link href="/" className="hover:text-neutral-900 transition">Home</Link>
           </li>
           <li>
-            <Link href="/blog" className="hover:text-black">Blog</Link>
+            <Link href="/blog" className="hover:text-neutral-900 transition">Blog</Link>
           </li>
           <li>
-            <Link href="/about" className="hover:text-black">About</Link>
+            <Link href="/about" className="hover:text-neutral-900 transition">About</Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:text-black">Contact</Link>
+            <Link href="/contact" className="hover:text-neutral-900 transition">Contact</Link>
           </li>
         </ul>
       </div>

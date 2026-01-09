@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+/* =========================
+   Global theme (soft luxury)
+   ========================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base colors */
+  --background: #f6f2ec; /* ivory / warm off-white */
+  --foreground: #1a1a1a;
+  --accent: #c8a96a;        /* champagne */
+  --accent-soft: #e7d7b2;   /* highlight doux */
+
+  /* Glass system */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -12,34 +23,37 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Optional: if you ever want dark mode later, we can re-enable a dark palette.
+   For now, keep the site in soft-luxury light mode consistently.
+*/
+/*
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #060608;
+    --foreground: rgba(255,255,255,0.92);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.14);
   }
 }
+*/
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-:root {
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.14);
-}
-
-html, body {
   height: 100%;
 }
 
 body {
-  background: radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,0.08), transparent 60%),
-              radial-gradient(900px 600px at 80% 30%, rgba(255,255,255,0.06), transparent 55%),
-              #060608;
-  color: rgba(255,255,255,0.92);
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(255, 240, 220, 0.6), transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, rgba(245, 235, 220, 0.6), transparent 55%),
+    var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================
+   Glass component
+   ========================= */
 
 .glass {
   background: var(--glass-bg);
@@ -47,5 +61,11 @@ body {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
+
+.accent-text { color: var(--accent); }
+.accent-bg { background: var(--accent); }
+.accent-ring { box-shadow: 0 0 0 3px rgba(200,169,106,0.25); }
